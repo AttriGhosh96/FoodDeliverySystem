@@ -27,6 +27,7 @@ public class Data {
         //Object array for Restaurant & Customer
         Data RestaurantCustomer[][] = new Data[3][4];
         Data RestaurantRestaurant[][] = new Data[3][3];
+        Data CustomerCustomer[][] = new Data[4][4];
         int i, j;
         // Restaurant & Customer Array
         System.out.println("Restaurant(Rows) & Customer(Columns) Array");
@@ -48,6 +49,18 @@ public class Data {
             }
             System.out.println();
         }
+        System.out.println();
+
+        // Customer & Customer Array
+        System.out.println("Customer(Rows) & Customer(Columns) Array");
+        for(i=0; i<3; i++) {
+            for (j = 0; j < 3; j++) {
+                CustomerCustomer[i][j] = new Data(7, 20, false);
+                CustomerCustomer[i][j].display();
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     //display function
