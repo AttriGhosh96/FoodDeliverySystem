@@ -33,8 +33,8 @@ public class GeneratePopulation {
     }
 
     public void initialisation() {
-        POCInitialization pOCObj = new POCInitialization();
-        orders = pOCObj.getOrders();
+        POCInitialization pocObj = new POCInitialization();
+        orders = pocObj.getOrders();
 
 
 
@@ -69,6 +69,12 @@ public class GeneratePopulation {
         restaurantRestaurantDistanceMatrix = Utility.extractSubArray(allToAll, noOfUniqueCustomers, (noOfUniqueCustomers + noOfUniqueRestaurants)-1, noOfUniqueCustomers, (noOfUniqueCustomers + noOfUniqueRestaurants)-1 );
         customerRestaurantDistanceMatrix = Utility.extractSubArray(allToAll, 0, noOfUniqueCustomers-1, noOfUniqueCustomers, (noOfUniqueCustomers + noOfUniqueRestaurants)-1);
 
+        System.out.println("Customer-Customer");
+        display(customerCustomerDistanceMatrix);
+        System.out.println("Restaurant-Restaurant");
+        display(restaurantRestaurantDistanceMatrix);
+        System.out.println("Customer-Restaurant");
+        display(customerRestaurantDistanceMatrix);
 
 
     }
@@ -94,5 +100,25 @@ public class GeneratePopulation {
             setOfRestaurant.add(order.getRestaurant());
         }
         return setOfRestaurant;
+    }
+
+    public void display(double [][] array)
+    {
+        int i,j;
+        for(i=0; i<array.length; i++)
+        {
+            for(j=0; j<array[i].length; j++)
+            {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    //creation of initial population
+
+    public static void main(String args[])
+    {
+        GeneratePopulation obj = new GeneratePopulation();
     }
 }
