@@ -1,24 +1,27 @@
+import java.io.*;
 public class Data {
 
     // Variables defined for each object
-    double distance_in_km; //stores the distance between each set of restaurant & customer / restaurant & restaurant / customer &customer
-    int time_in_mins; //stores time to travel between each set of restaurant & customer / restaurant & restaurant / customer &customer
-    boolean acceptvisit; //whether a visit exists between each set of restaurant & customer / restaurant & restaurant / customer &customer
+    double distanceInKm; //stores the distance between each set of restaurant & customer / restaurant & restaurant / customer &customer
+    int timeInMinutes; //stores time to travel between each set of restaurant & customer / restaurant & restaurant / customer &customer
+    boolean acceptVisit; //whether a visit exists between each set of restaurant & customer / restaurant & restaurant / customer &customer
 
+    static int request[] = new int[4]; //Working with 4 customers
+    static int shelfTime[] = new int[4]; //shelf time of foods ordered, to be assigned by restaurants
 
     //default constructor
     public Data()
     {
-        distance_in_km = 0.0;
-        time_in_mins = 0;
-        acceptvisit = false;
+        distanceInKm = 0.0;
+        timeInMinutes = 0;
+        acceptVisit = false;
     }
     //parametrized constructor
     public Data(double distance, int time, boolean accept)
     {
-        distance_in_km = distance;
-        time_in_mins = time;
-        acceptvisit = accept;
+        distanceInKm = distance;
+        timeInMinutes = time;
+        acceptVisit = accept;
     }
 
     //initialization function
@@ -66,14 +69,56 @@ public class Data {
     //display function
     public  void display()
     {
-        System.out.print(distance_in_km + "," + time_in_mins + "," + acceptvisit +"\t");
+        System.out.print(distanceInKm + "," + timeInMinutes + "," + acceptVisit +"\t");
     }
 
-    //main function
-    public static void main(String args[])
+    //distance function
+    public double getDistance()
     {
-        //Data object = new Data();
+        return distanceInKm;
+    }
+
+    //time function
+    public int getTime()
+    {
+       return timeInMinutes;
+    }
+
+
+    //main function
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //for initial assignments
         initialization();
 
+        //initializing the request array and shelftime array
+        int i,j,k;
+
+        for(i=0; i<4; i++)
+        {
+            System.out.println("Customer " +(i+1) + " enter your choice of restaurant(1,2,3) ");
+            j = Integer.parseInt(br.readLine());
+            request[i] = j;
+            System.out.println("Restaurant " + j + " is requested to specify the shelf time of the order just received ");
+            k = Integer.parseInt(br.readLine());
+            shelfTime[i] = k;
+        }
+
+        //printing the request array
+        System.out.println("Customers(1-4) have requested orders from the following restaurants ");
+        for(i=0; i<4; i++) {
+            System.out.print(request[i] + "\t");
+
+        }
+        System.out.println();
+
+        //printing the shelftime array
+        System.out.println("Shelf time of the  requested orders from the restaurants are ");
+        for(i=0; i<4; i++) {
+            System.out.print(shelfTime[i] + "\t");
+
+        }
+        System.out.println();
     }
 }
